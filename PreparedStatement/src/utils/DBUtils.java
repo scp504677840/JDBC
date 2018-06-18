@@ -22,10 +22,8 @@ public class DBUtils {
 
             //1.获取数据库连接属性
             Properties properties = new Properties();
-            //InputStream in = DBUtils.class.getResourceAsStream("jdbc.properties");
-            //properties.load(in);
-
-            properties.load(new FileInputStream("/Users/scp/Documents/Workspace/Java/JLab/src/jdbc.properties"));
+            InputStream in = DBUtils.class.getResourceAsStream("jdbc.properties");
+            properties.load(in);
 
             //2.准备数据库连接信息
             String driverClassName = properties.getProperty("driver");
