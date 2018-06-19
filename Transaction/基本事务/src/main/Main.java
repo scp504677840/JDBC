@@ -11,14 +11,14 @@ import java.sql.SQLException;
  * -- auto-generated definition
  * create table bank
  * (
- *   id      int auto_increment,
- *   balance double default '0' not null,
- *   constraint bank_id_uindex
- *   unique (id)
+ * id      int auto_increment,
+ * balance double default '0' not null,
+ * constraint bank_id_uindex
+ * unique (id)
  * );
- *
+ * <p>
  * alter table bank
- *   add primary key (id);
+ * add primary key (id);
  */
 public class Main {
     public static void main(String[] args) {
@@ -30,11 +30,22 @@ public class Main {
             // 开始事务：取消自动提交事务
             conn.setAutoCommit(false);
 
-            //设置事务隔离级别
+            // 获取事务隔离级别
+            int transactionIsolation = conn.getTransactionIsolation();
+            System.out.println("事务隔离级别: " + transactionIsolation);
+            // 事务隔离级别: 4
+            // TRANSACTION_REPEATABLE_READ 可重复读
+
+            // 设置事务隔离级别
+            // 无
             //conn.setTransactionIsolation(Connection.TRANSACTION_NONE);
+            // 读未提交
             //conn.setTransactionIsolation(Connection.TRANSACTION_READ_UNCOMMITTED);
-            //conn.setTransactionIsolation(Connection.TRANSACTION_READ_COMMITTED);
+            // 读已提交【推荐】
+            conn.setTransactionIsolation(Connection.TRANSACTION_READ_COMMITTED);
+            // 可重复读
             //conn.setTransactionIsolation(Connection.TRANSACTION_REPEATABLE_READ);
+            // 序列化
             //conn.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);
 
             String sql = "update bank set balance = balance - ? where id = ?";
