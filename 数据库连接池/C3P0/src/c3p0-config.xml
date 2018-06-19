@@ -1,0 +1,18 @@
+<c3p0-config>
+
+    <default-config>
+        <property name="maxPoolSize">30</property>
+        <extensions>
+            <property name="initSql">SET SCHEMA 'default'</property>
+        </extensions>
+    </default-config>
+
+    <named-config name="c3p0app">
+        <property name="driverClass">com.mysql.cj.jdbc.Driver</property>
+        <property name="jdbcUrl">jdbc:mysql://192.168.0.105:3306/lab</property>
+        <property name="user">root</property>
+        <property name="password">123456</property>
+        <property name="maxPoolSize">100</property>
+    </named-config>
+
+</c3p0-config>
