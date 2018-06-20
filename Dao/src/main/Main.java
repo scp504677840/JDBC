@@ -1,6 +1,7 @@
 package main;
 
 import bean.Bank;
+import dao.BankDao;
 import dao.BankDaoImpl;
 import exception.DBUtilsException;
 import utils.DaoUtils;
@@ -44,7 +45,7 @@ public class Main {
 
         try {
             connection = DaoUtils.connection();
-            BankDaoImpl dao = new BankDaoImpl();
+            BankDao dao = new BankDaoImpl();
 
             String sql = "select * from bank where id = ?";
             Bank bank = dao.get(connection, sql, 3);
